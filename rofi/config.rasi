@@ -1,0 +1,83 @@
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  display-run: "Run script:";
+  drun-display-format: "{name}";
+  show-icons: false;
+  font: "JetBrains Mono Nerd Font 14";
+  modi: "window,run,drun";
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #1F1F28;
+  bg-alt: #49473E;
+
+  fg: #DDD8BB;
+  fg-alt: #49473E;
+
+  background-color: @bg;
+  
+  border: 0;
+  margin: 0;
+  padding: 5;
+  spacing: 0;
+}
+
+window {
+  width: 45%;
+}
+
+element {
+  padding: 8 0;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 30;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 12;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+  border-radius: 200px;
+}
+
+listview {
+  padding: 8 12;
+  text-align: center;
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: @bg-alt;
+  enabled: true;
+  padding: 12 0 0 12;
+  text-color: @fg;
+}
+
+/* vim: ft=sass
+

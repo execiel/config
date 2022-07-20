@@ -1,0 +1,150 @@
+* {
+  font-family: JetBrains Mono Nerd Font;
+  font-size: 15px;
+}
+
+window#waybar {
+  border-radius: 0px;
+  border-bottom: 3px solid #3c3836;
+  background-color: rgba(40, 40, 40, 0.9);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+window#waybar.empty {
+  background-color: transparent;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#custom-shutdown,
+#custom-window {
+  color: #d5c4a1;
+  background-color: #3c3836;
+
+  margin-top: 5px;
+  margin-bottom: 8px;
+  margin-left: 3px;
+  margin-right: 3px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+
+#workspaces {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#workspaces button {
+  margin-left: -3px;
+  margin-right: -3px;
+  margin-bottom: 7px;
+  margin-top: 5px;
+  padding: 3px;
+  padding-right: 13px;
+  padding-left: 13px;
+  background-color: #3c3836;
+  border-radius: 5px;
+  color: #d5c4a1;
+}
+
+#workspaces .active * {
+  color: #e78a4e;
+}
+
+#custom-shutdown {
+  padding-right: 18px;
+  margin-right: 8px;
+}
+
+#custom-shutdown .focused *,
+#custom-shutdown .active * {
+  background-color: #504945;
+}
+
+#temperature.critical {
+  color: #eb4d4b;
+}
+
+#pulseaudio.bluetooth {
+  color: #7daea3;
+}
+
+#pulseaudio.muted {
+  color: #eb4d4b;
+}
+
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ea6962;
+    color: #282828;
+  }
+}
+
+#network.disconnected {
+  color: #e78a4e;
+}
+
+#network.disabled {
+  color: #ea6962;
+}
+
+#battery.charging {
+  color: #a9b665;
+}
+
+#battery.warning:not(.charging) {
+  color: #e78a4e;
+}
+
+#battery.critical:not(.charging) {
+  color: #ea6962;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#keyboard-state > label {
+  padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+  background: rgba(0, 0, 0, 0.2);
+}

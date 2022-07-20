@@ -1,0 +1,32 @@
+(defpoll current_volume :interval "0.2s" "./scripts/getvol")
+
+(defwindow volume_widget
+  :class "volume_widget"
+  :monitor 0
+  :geometry (geometry :height "175px" :width "175px" :anchor "center center")
+  :stacking "bottom"
+  :exclude true
+	:stacking "fg"
+	:exclusive "false"
+
+  (volume_content)
+)
+
+(defwidget volume_content[]
+  (box
+    :class "volume_content"
+    :orientation "v"
+    :space-evenly true
+    :halign "center"
+    :valign "center"
+    :spacing 10
+    (label
+      :text "墳"
+      :class "volume_icon")
+    (label
+      :text current_volume
+      :class "volume_percentage")
+    )
+  )
+
+

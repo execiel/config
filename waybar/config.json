@@ -1,0 +1,90 @@
+{
+  "custom/window": {
+    "exec": "~/.config/waybar/window_title.sh",
+    "interval": 1
+  },
+
+  "custom/shutdown": {
+    "format": "",
+    "on-click": "~/.config/waybar/shutdown_launch.sh"
+  },
+
+  "position": "top",
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-top": 0,
+  "spacing": 0,
+
+  "modules-left": ["wlr/workspaces", "cpu", "temperature", "memory", "disk"],
+  "modules-center": ["custom/window"],
+  "modules-right": [
+    "network",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "custom/shutdown"
+  ],
+
+  "disk": {
+    "format": " {path} {percentage_used}%"
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  "cpu": {
+    "format": "<big></big> {usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "format": " {used:0.1f}G"
+  },
+  "temperature": {
+    "critical-threshold": 50,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 50,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-warning": "{icon} {capacity}%",
+    "format-critical": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+
+    "format-alt": "{icon} {capacity}% {time}",
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+  },
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "⚠",
+    "format-alt": " {bandwidthUpBits}  {bandwidthDownBits}:  {signalStrength}%"
+  },
+  "pulseaudio": {
+    "format": " {icon}  {format_source}",
+    "format-alt": " {icon}  {volume}% {format_source}",
+    "format-bluetooth": " {icon}  {format_source}",
+    "format-bluetooth-muted": " 婢  {format_source}",
+    "format-muted": " 婢",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", "墳", ""]
+    },
+    "on-click": "pavucontrol"
+  }
+}

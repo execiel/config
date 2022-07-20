@@ -1,0 +1,67 @@
+(defpoll current_time :interval "5s" "date +%H:%M")
+(defpoll active_window :interval "0.2s" "scripts/window_title.sh")
+
+(defwindow bar
+  :class "bar"
+  :monitor 0
+  :geometry (geometry :height "38px" :width "100%" :anchor "top center")
+  :stacking "bottom"
+  :exclude true
+	:stacking "bt"
+	:exclusive "true"
+  (bar_container)
+)
+
+(defwidget bar_container[]
+  (box
+    :class "bar_container"
+    (content_left)
+    (content_center)
+    (content_right)
+    )
+  )
+
+(defwidget content_right []
+  (box
+    :class "content_left"
+    :orientation "h"
+    :halign "right"
+    :spacing 0
+    (clock)
+  )
+)
+
+(defwidget content_center []
+  (box
+    :class "content_left"
+    :orientation "h"
+    :halign "center"
+    :spacing 0
+    (current_window)
+  )
+)
+
+(defwidget content_left []
+  (box
+    :class "content_left"
+    :orientation "h"
+    :halign "left"
+    :spacing 0
+  )
+)
+
+(defwidget current_window[]
+  (box
+    (label
+      :text active_window
+      :class "window_title" )
+  )
+)
+
+(defwidget clock[]
+  (box
+    (label
+      :text current_time
+    )
+  )
+)

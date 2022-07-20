@@ -1,0 +1,86 @@
+window {
+  background-color: rgba(32, 32, 32, 1);
+  border: 3px solid #3c3836;
+  font-family: JetBrains Mono Nerd Font;
+  border-radius: 15px;
+}
+
+button {
+  font-size: 16px;
+  margin: 5px;
+  background-color: rgba(32, 32, 32, 1);
+  color: #d4be98;
+}
+
+.volume_content > .volume_icon {
+  font-size: 60px;
+  margin-top: 20px;
+}
+
+.volume_content > .volume_percentage {
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.bar {
+  background-color: #202020;
+  border: none;
+  border-radius: 0px;
+}
+
+.dock {
+  border-radius: 1000px;
+}
+
+.dock_content {
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 38px;
+}
+
+.dock_content * {
+  transition: 0.1s;
+  margin: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.dock_content *:hover {
+  color: #d4be98;
+}
+
+.firefox,
+.reboot {
+  color: #e78a4e;
+  margin-left: 0px;
+}
+
+.spotify {
+  color: #a9b665;
+}
+
+.movie {
+  color: #89b482;
+}
+
+.terminal {
+  color: #d4be98;
+}
+
+.files,
+.exit {
+  color: #7daea3;
+}
+
+.git,
+.logout {
+  color: #d8a657;
+  margin-right: 0px;
+}
+
+.mail,
+.poweroff {
+  color: #ea6962;
+}
