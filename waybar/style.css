@@ -4,9 +4,8 @@
 }
 
 window#waybar {
-  border-radius: 0px;
-  border-bottom: 3px solid #3c3836;
-  background-color: rgba(32, 32, 32, 1);
+  border: none;
+  background-color: rgba(60, 56, 54, 1);
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -32,10 +31,10 @@ window#waybar.empty {
 #custom-shutdown,
 #custom-window {
   color: #d5c4a1;
-  background-color: #202020;
+  background-color: transparent;
 
   margin-top: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   margin-left: 3px;
   margin-right: 3px;
 
@@ -54,12 +53,10 @@ window#waybar.empty {
 #workspaces button {
   margin-left: -3px;
   margin-right: -3px;
-  margin-bottom: 7px;
-  margin-top: 5px;
   padding: 3px;
   padding-right: 10px;
   padding-left: 10px;
-  background-color: #202020;
+  background-color: transparent;
   border-radius: 5px;
   color: #d5c4a1;
 }

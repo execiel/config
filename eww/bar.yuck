@@ -1,8 +1,19 @@
 (defpoll current_time :interval "5s" "date +%H:%M")
 (defpoll active_window :interval "0.2s" "scripts/window_title.sh")
 
-(defwindow bar
-  :class "bar"
+(defwindow bar_right
+  :class "bar-right"
+  :monitor 0
+  :geometry (geometry :height "100%" :width "38px" :anchor "right center")
+  :stacking "bottom"
+  :exclude true
+	:stacking "bt"
+	:exclusive "true"
+  (label :text "H")
+)
+
+(defwindow bar_top
+  :class "bar-top"
   :monitor 0
   :geometry (geometry :height "38px" :width "100%" :anchor "top center")
   :stacking "bottom"

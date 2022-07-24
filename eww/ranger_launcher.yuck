@@ -1,0 +1,33 @@
+(defwindow ranger_menu
+  :monitor 0
+  :geometry (
+    geometry
+    :x "840px"
+    :y "110px"
+    :width "325px"
+    :height "350px"
+    :anchor "center center")
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dialog"
+  :wm-ignore false
+  (ranger_paths)
+)
+
+(defwidget ranger_paths []
+  (box
+    :class "ranger_paths"
+    :transition "slideup"
+    :reveal true
+    :halign "center";
+    :valign "center"
+    :orientation "v"
+    (button :class "path_link_first" :onclick "kitty ranger ~ & ~/Applications/eww/target/release/eww close ranger_menu" "  Home Folder   ")
+    (button :class "path_link" :onclick "kitty ranger ~/Development & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/Development ")
+    (button :class "path_link" :onclick "kitty ranger ~/.config/nvim & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/.config/nvim")
+    (button :class "path_link" :onclick "kitty ranger ~/.config/kitty & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/.conf/kitty ")
+    (button :class "path_link" :onclick "kitty ranger ~/.config/eww & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/.config/eww ")
+    (button :class "path_link" :onclick "kitty ranger ~/.config/hypr & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/.config/hypr")
+    (button :class "path_link_last" :onclick "kitty ranger ~/Pictures & ~/Applications/eww/target/release/eww close ranger_menu" "  ~/Pictures    ")
+  )
+)

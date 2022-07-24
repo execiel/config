@@ -1,0 +1,45 @@
+(defwindow dock_trigger
+  :class "dock_trigger"
+  :monitor 0
+  :geometry (geometry :x "0px" :y "-18px" :height "0px" :width "100%" :anchor "bottom center")
+  :stacking "bottom"
+  :exclude true
+	:stacking "bt"
+	:exclusive "true"
+  :focusable "true"
+  (eventbox :onhover "./scripts/closeoropen.sh 'dock'" "")
+)
+
+(defwindow dock
+  :monitor 0
+  :geometry (geometry :x "0%"
+    :y "-1px"
+    :width "0px"
+    :height "0px"
+    :anchor "bottom center")
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+	:exclusive "false"
+  (dock_content)
+)
+
+(defwidget dock_content []
+  (box
+    :class "dock_content"
+    :orientation "h"
+    :space-evenly true
+    :halign "center"
+    :spacing 10
+    (eventbox :class "firefox" :onclick "firefox & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "spotify" :onclick "spotify-launcher & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "movie" :onclick "Popcorn-Time & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "discord" :onclick "discord & ./scripts/closeoropen.sh 'dock'" "ﭮ")
+    (eventbox :class "files" :onclick "./scripts/closeoropen.sh 'ranger_menu' & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "git" :onclick "firefox --new-window https://github.com/weglon & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "youtube" :onclick "firefox --new-window https://youtube.com & ./scripts/closeoropen.sh 'dock'" "")
+    (eventbox :class "reddit" :onclick "firefox --new-window https://reddit.com/unixporn & ./scripts/closeoropen.sh 'dock'" "")
+  )
+)
+
+

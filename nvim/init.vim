@@ -1,4 +1,4 @@
-"
+" Some nonesense
 "       __          __                        
 "       \ \        / /                        
 "        \ \  /\  / /__ _ __   ___  _ __  ___ 
@@ -28,7 +28,7 @@ set backspace=indent,eol,start
 set nobackup
 set noswapfile
 " set mouse=a
-set relativenumber
+set number
 set scrolloff=2
 set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
@@ -192,6 +192,8 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 
 
 " Syntax options
+au BufReadPost *.conf set syntax=dosini
+
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",

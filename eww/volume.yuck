@@ -3,7 +3,7 @@
 (defwindow volume_widget
   :class "volume_widget"
   :monitor 0
-  :geometry (geometry :height "175px" :width "175px" :anchor "center center")
+  :geometry (geometry :height "250px" :width "250px" :anchor "center center")
   :stacking "bottom"
   :exclude true
 	:stacking "fg"

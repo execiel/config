@@ -1,36 +1,7 @@
 (include "./bar.yuck")
 (include "./volume.yuck")
-
-(defwindow dock
-  :monitor 0
-  :geometry (geometry :x "0%"
-    :y "20px"
-    :width "520px"
-    :height "60px"
-    :anchor "bottom center")
-  :stacking "bg"
-  :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
-  :wm-ignore false
-  (dock_content)
-)
-
-(defwidget dock_content []
-  (box
-    :class "dock_content"
-    :orientation "h"
-    :space-evenly true
-    :halign "center"
-    :spacing 10
-    (eventbox :class "firefox" :onclick "firefox &" "")
-    (eventbox :class "spotify" :onclick "spotify-launcher &" "")
-    (eventbox :class "movie" :onclick "Popcorn-Time &" "")
-    (eventbox :class "files" :onclick "./scripts/closeoropen.sh 'thunar_menu'" "")
-    (eventbox :class "git" :onclick "firefox --new-window https://github.com/weglon &" "")
-    (eventbox :class "mail" :onclick "firefox --new-window https://gmail.com &" "")
-  )
-)
-
+(include "./dock.yuck")
+(include "./ranger_launcher.yuck")
 
 (defwindow shutdown_window
   :monitor 0
@@ -39,8 +10,8 @@
     geometry
     :x "10px"
     :y "10px"
-    :width "100px"
-    :height "80px"
+    :width "0px"
+    :height "0px"
     :anchor "top right")
   :stacking "fg"
   :reserve (struts :distance "40px" :side "right")
@@ -62,40 +33,5 @@
     (eventbox :class "poweroff" :onclick "shutdown -h now" "襤")
     (eventbox :class "reboot" :onclick "reboot -h" "ﰇ" )
     (eventbox :class "logout" :onclick "killall hyprland" "")
-  )
-)
-
-
-(defwindow thunar_menu
-  :monitor 0
-  :geometry (
-    geometry
-    :x "840px"
-    :y "110px"
-    :width "325px"
-    :height "350px"
-    :anchor "bottom left")
-  :stacking "bg"
-  :reserve (struts :distance "40px" :side "top")
-  :windowtype "dialog"
-  :wm-ignore false
-  (thunar_paths)
-)
-
-(defwidget thunar_paths []
-  (box
-    :class "thunar_paths"
-    :transition "slideup"
-    :reveal true
-    :halign "center";
-    :valign "center"
-    :orientation "v"
-    (button :class "path_link_first" :onclick "thunar ~ & ~/Applications/eww/target/release/eww close thunar_menu" "  Home Folder   ")
-    (button :class "path_link" :onclick "thunar ~/Development & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/Development ")
-    (button :class "path_link" :onclick "thunar ~/.config/nvim & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/.config/nvim")
-    (button :class "path_link" :onclick "thunar ~/.config/kitty & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/.conf/kitty ")
-    (button :class "path_link" :onclick "thunar ~/.config/eww & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/.config/eww ")
-    (button :class "path_link" :onclick "thunar ~/.config/hypr & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/.config/hypr")
-    (button :class "path_link_last" :onclick "thunar ~/Pictures & ~/Applications/eww/target/release/eww close thunar_menu" "  ~/Pictures    ")
   )
 )

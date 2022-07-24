@@ -7,9 +7,8 @@ window {
 }
 
 #input {
-  margin: 20px;
-  padding: 20px;
   border: none;
+  padding: 5px;
   font-size: 18px;
   color: #d4be98;
   background-color: #282828;
