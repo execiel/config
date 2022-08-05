@@ -1,98 +1,379 @@
-window {
-  background-color: rgba(60, 56, 54, 1);
-  border: 3px solid #665c54;
-  border: none;
+/////////////////
+//  Variables  //
+/////////////////
+
+// Colors
+$background: #282828;
+$bgdark: #32302f;
+$drgray: #504945;
+$brgray: #928374;
+$text: #d4be98;
+$brred: #e78a4e;
+$drred: #c14a4a;
+$brblue: #7daea3;
+$bryellow: #d8a657;
+$dryellow: #a96b2c;
+$brgreen: #a9b665;
+$brcyan: #89b482;
+$brmagenta: #d3869b;
+
+// Sizes
+$iconsize: 20px;
+$fontsize: 16px;
+$bordersize: 3px;
+
+///////////
+//  bar  //
+///////////
+
+* {
+  all: unset;
+  font-size: $fontsize;
   font-family: JetBrains Mono Nerd Font;
-  border-radius: 15px;
+  font-weight: 500;
 }
 
-button {
-  font-size: 18px;
-  margin: 5px;
+.bar label {
+  text-shadow: 2px 2px 2px #1f1f1f;
+}
+
+.bar {
+  background-color: $background;
+  color: $text;
+  opacity: 1;
+
+  padding: 10px;
+  border-bottom: $bordersize solid $drgray;
+}
+
+.bar > * {
+  margin-top: -3px;
+}
+
+.icon {
+  font-size: $iconsize;
+}
+
+//  menu
+
+.menu {
+  transition: 0.3s all;
+}
+
+.menu > box {
+  padding-left: 8px;
+}
+
+.menu:hover {
+  background-color: $bgdark;
+  border-bottom: $bordersize solid $brgreen;
+}
+
+.menu:hover > box {
+  padding-right: 8px;
+}
+
+.menu label,
+.menu button {
+  font-size: 23px;
+  margin-left: 8px;
+  margin-right: 8px;
+  transition: 0.1s;
+}
+
+.menu .shutdown {
+  color: $brred;
+}
+
+.menu .reboot {
+  color: $bryellow;
+}
+
+.menu .logout {
+  color: $brgreen;
+}
+
+.menu button:hover {
+  color: $text;
+}
+
+//  Workspaces
+
+.workspace_window {
   background-color: transparent;
-  color: #d4be98;
+  color: transparent;
 }
 
-.dock_trigger {
-  border: none;
-  background-color: transparent;
-  padding: 0px;
+.workspaces button:hover {
+  color: $text;
 }
 
-.volume_content > .volume_icon {
-  font-size: 70px;
-  padding: 0px;
-  margin: 0px;
+.workspaces * {
+  font-size: 19px;
+  margin-top: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
-.volume_content > .volume_percentage {
+.workspaces button {
+  transition: 0.1s;
+}
+
+.workspaces .free {
+  color: $drgray;
+}
+
+.workspaces .focused {
+  color: $brred;
+}
+
+.workspaces .occupied {
+  color: $brred;
+}
+
+//  stats and other colorchanging icons
+
+.stats {
+  transition: 0.3s all;
+}
+
+.stats > box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.stats:hover {
+  background-color: $bgdark;
+  border-bottom: $bordersize solid $brcyan;
+}
+
+.stats > box > * {
+  margin: 0px 8px 0px 8px;
+}
+
+.ram_icon {
+  font-size: 22;
+}
+
+.disk_empty,
+.disk_good,
+.disk_warn,
+.disk_full,
+.disk_good,
+.temp_crit,
+.temp_high,
+.temp_med,
+.temp_low {
+  font-size: $iconsize;
+}
+
+.ram_full,
+.ram_warn,
+.ram_good {
+  font-size: 24px;
+}
+
+.temp_low {
+  color: $brblue;
+}
+
+.ram_good,
+.disk_good {
+  color: $brgreen;
+}
+
+.battery_charging,
+.battery_full,
+.battery_high,
+.battery_med,
+.battery_low,
+.battery_crit {
+  margin-left: 5px;
+}
+
+.battery_charging,
+.battery_med,
+.battery_low,
+.battery_crit {
+  margin-right: 10px;
+}
+
+.battery_crit,
+.ram_full,
+.temp_crit {
+  color: $drred;
+}
+
+.battery_low,
+.disk_full,
+.temp_high {
+  color: $brred;
+}
+
+.battery_med,
+.disk_warn,
+.ram_warn,
+.temp_med {
+  color: $bryellow;
+}
+
+.battery_charging,
+.disk_empty {
+  color: $brgreen;
+}
+
+//Wifi
+
+.wifi * {
+  transition: 0.3s all;
+}
+
+.wifi box {
+  margin-right: 5px;
+}
+
+.wifi > box > * {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.wifi revealer > label {
+  margin-left: 10px;
+}
+
+.wifi:hover {
+  background-color: $bgdark;
+  border-bottom: $bordersize solid $brgreen;
+}
+
+.wifi:hover box {
+  padding-right: 12px;
+  padding-left: 10px;
+}
+
+//  Slider stuff
+
+.volume_icon {
+  font-size: 22px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider {
+  transition: 0.3s all;
+}
+
+.rev_slider box {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider .icon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider:hover {
+  background-color: $bgdark;
+  border-bottom: $bordersize solid $brred;
+}
+
+.rev_slider scale trough highlight {
+  all: unset;
+  background-color: $brred;
+  border-radius: 10px;
+}
+
+.rev_slider scale trough {
+  all: unset;
+  background-color: $drgray;
+  border-radius: 50px;
+  min-height: 8px;
+  min-width: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.clock {
+  margin-right: 10px;
+  color: $text;
+}
+
+//  Music player
+
+.music {
+  transition: 0.3s all;
+  color: $bryellow;
+}
+
+.music .icon {
+  padding-left: 15px;
+  font-size: 22px;
+}
+
+.music:hover {
+  background-color: $bgdark;
+  border-bottom: 3px solid $bryellow;
+}
+
+.music .player {
+  transition: 0.3s all;
+  margin: 0px 5px 0px 5px;
+}
+
+.music .player * {
   font-size: 25px;
-  margin: 0px;
-  padding: 0px;
 }
+
+.music .player:hover {
+  color: $text;
+}
+
+////////////
+//  dock  //
+////////////
 
 .dock {
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-bottom: none;
-}
-
-.dock_content {
+  margin-bottom: 8px;
   padding: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 32px;
+  border-radius: 15px;
+  transition: 0.3s all;
 }
 
-.dock_content * {
-  transition: 0.1s;
-  margin: 5px;
+.dock_trigger:hover .dock {
+  background-color: $background;
+}
+
+.dock * {
+  font-size: 35px;
   margin-left: 15px;
   margin-right: 15px;
 }
 
-.dock_content *:hover {
-  color: #d4be98;
-  text-shadow: 0px 0px 2px #d4be98;
+.dock *:hover {
+  color: $text;
 }
 
-.firefox,
-.reboot,
-.reddit {
-  color: #e78a4e;
+.dock .firefox {
+  color: $brred;
 }
 
-.spotify {
-  color: #a9b665;
+.dock .files {
+  color: $brcyan;
 }
 
-.movie {
-  color: #89b482;
+.dock .spotify {
+  color: $brgreen;
 }
 
-.terminal {
-  color: #d4be98;
+.dock .term {
+  color: $brmagenta;
 }
 
-.files,
-.exit {
-  color: #7daea3;
+.dock .gh {
+  color: $bryellow;
 }
 
-.discord {
-  color: #8f3f71;
-}
-
-.git,
-.logout {
-  color: #d8a657;
-  margin-right: 0px;
-}
-
-.mail,
-.youtube,
-.poweroff {
-  color: #ea6962;
+.dock .mail {
+  color: $drred;
 }

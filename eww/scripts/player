@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#str=$(playerctl --follow metadata --format '{{ title }}' || true)
+str="Hello there every one"
+len=${#str}
+
+if [ $len -gt 15 ]; then
+  str=$(str | cut -c 1-15)
+fi
+
+echo $len

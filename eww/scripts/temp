@@ -1,0 +1,38 @@
+#!/bin/sh
+temp=$(sensors | awk 'FNR == 22 {print $2}' | cut -c 2-3)
+
+icon() {
+  if [ "$temp" -gt "60" ]; then
+    out=""
+  elif [ "$temp" -gt "50" ]; then
+    out=""
+  elif [ "$temp" -gt "40" ]; then
+    out=""
+  elif [ "$temp" -gt "30" ]; then
+    out=""
+  else
+    echo "" && exit
+  fi
+
+  echo "$out" && exit
+}
+
+othertext() {
+  if [ "$temp" -gt "55" ]; then
+    out="$temp°C"
+  else
+    echo "" && exit
+  fi
+
+  echo "$out" && exit
+}
+
+text() {
+  out="$temp°C"
+  echo "$out" && exit
+}
+
+
+
+[ "$1" = "text" ] && text && exit
+[ "$1" = "icon" ] && icon && exit

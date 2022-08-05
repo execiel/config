@@ -1,0 +1,20 @@
+#!/bin/sh
+disk_str=$(df -h | grep 'luksdev' | awk '{print $3 "/" $2}')
+disk_per=$(df -h | grep 'luksdev' | awk '{print $5 + .0}')
+
+class() {
+  if [ "$disk_per" -gt "90" ]; then
+    echo "disk_full"
+  elif [ "$disk_per" -gt "50" ]; then
+    echo "disk_warn"
+  elif [ "$disk_per" -gt "20" ]; then
+    echo "disk_good"
+  elif [ "$disk_per" -gt "0" ]; then
+    echo "disk_empty"
+  else
+    echo "disk_unknown"
+  fi
+}
+
+[ "$1" = "text" ] && echo "$disk_str" && exit
+[ "$1" = "class" ] && class && exit

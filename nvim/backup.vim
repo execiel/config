@@ -29,7 +29,6 @@ set nobackup
 set noswapfile
 " set mouse=a
 set number
-set relativenumber
 set scrolloff=2
 set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
@@ -96,14 +95,12 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-
   " Essentials
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'  
   Plug 'honza/vim-snippets'
   Plug 'SirVer/ultisnips'
-  Plug 'nvim-lualine/lualine.nvim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'itchyny/lightline.vim'
 
   " Syntax
   Plug 'gko/vim-coloresque'
@@ -114,8 +111,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   
   " Themes
   Plug 'rktjmp/lush.nvim'
+  Plug 'sainnhe/gruvbox-material'
   Plug 'eddyekofo94/gruvbox-flat.nvim'
   Plug 'meliora-theme/neovim', {'requires': 'rktjmp/lush.nvim'}
+  Plug 'mangeshrex/everblush.vim'
+  Plug 'jacoborus/tender.vim'
   Plug 'marko-cerovac/material.nvim'
   Plug 'junegunn/seoul256.vim'
   Plug 'savq/melange'
@@ -153,78 +153,37 @@ lua <<EOF
     },
   }
 
-  require('lualine').setup {
-    options = {
-      icons_enabled = true,
-      theme = 'gruvbox-material',
-      component_separators = { left = '|', right = '|'},
-      section_separators = { left = ' ', right = ' '},
-      disabled_filetypes = {
-        statusline = {},
-        winbar = {},
-      },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = false,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      },
+require 'meliora'.setup({
+    dim_inactive = false,
+    neutral = false, -- set this to `true` for neutral background and greys.
+    styles = {
+        comments = 'italic',
+        conditionals = 'NONE',
+        folds = 'NONE',
+        loops = 'NONE',
+        functions = 'NONE',
+        keywords = 'NONE',
+        strings = 'NONE',
+        variables = 'NONE',
+        numbers = 'NONE',
+        booleans = 'NONE',
+        properties = 'NONE',
+        types = 'NONE',
+        operators = 'NONE',
     },
-    sections = {
-      lualine_a = {'mode'},
-      lualine_b = {'branch'},
-      lualine_c = {'filetype', 'filename'},
-      lualine_x = {'hostname','fileformat'},
-      lualine_y = {'diagnostics'},
-      lualine_z = {'location'}
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {'filename'},
-      lualine_x = {'location'},
-      lualine_y = {},
-      lualine_z = {}
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {}
-  }
-
-  require 'meliora'.setup({
-      dim_inactive = false,
-      neutral = false, -- set this to `true` for neutral background and greys.
-      styles = {
-          comments = 'italic',
-          conditionals = 'NONE',
-          folds = 'NONE',
-          loops = 'NONE',
-          functions = 'NONE',
-          keywords = 'NONE',
-          strings = 'NONE',
-          variables = 'NONE',
-          numbers = 'NONE',
-          booleans = 'NONE',
-          properties = 'NONE',
-          types = 'NONE',
-          operators = 'NONE',
-      },
-      plugins = {
-          cmp = true,
-          indent_blankline = true,
-          nvim_tree = {
-              enabled = true,
-              show_root = false,
-          },
-          telescope = {
-              enabled = true,
-              nvchad_like = true,
-          },
-      }
-  })
+    plugins = {
+        cmp = true,
+        indent_blankline = true,
+        nvim_tree = {
+            enabled = true,
+            show_root = false,
+        },
+        telescope = {
+            enabled = true,
+            nvchad_like = true,
+        },
+    }
+})
 EOF
 
 let g:gruvbox_flat_style = "dark"
@@ -232,6 +191,37 @@ colorscheme gruvbox-flat
 
 hi LineNr guibg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+" Lightline options
+let g:lightline = {
+    \ 'colorscheme': 'gruvbox-material', 
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'filename', 'modified' ] ],
+    \   'right': [['lineinfo'], ['percent']] 
+    \ },
+    \ 'component_function': {
+    \   'mode': 'LightlineMode',
+    \ },
+    \ 'separator': { 'left': '', 'right': ''}
+    \ }
+
+function! LightlineMode()
+  return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
+    \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
+    \ &filetype ==# 'javascript' ? '' :
+    \ &filetype ==# 'json' ? '' :
+    \ &filetype ==# 'python' ? '' :
+    \ &filetype ==# 'css' ? '' :
+    \ &filetype ==# 'vim' ? '' :
+    \ &filetype ==# 'html' ? '' :
+    \ &filetype ==# 'lua' ? '' : 
+    \ &filetype ==# 'typescript' ? '' : 
+    \ &filetype ==# 'java' ? '' : 
+    \ &filetype ==# 'cpp' ? 'ﭱ' : 
+    \ &filetype ==# 'c' ? '' : 
+    \ ''
+endfunction
 
 " Formatting options
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')

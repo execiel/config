@@ -1,0 +1,9 @@
+#!/bin/sh
+
+state=$(~/Applications/eww/target/release/eww get rev_stats)
+
+if [ $state = false ]; then
+  ~/Applications/eww/target/release/eww update rev_stats=true
+else
+  ~/Applications/eww/target/release/eww update rev_stats=false
+fi

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+kitty iwctl station wlan0 scan && sleep 1 && iwctl station wlan0 get-networks

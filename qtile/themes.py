@@ -3,7 +3,7 @@ import datetime
 font = "JetBrains Mono Nerd Font" #"Bitstream Vera Sans Mono Nerd Font"
 icon_size = 20
 font_size = 16
-window_margin = 10
+window_margin = 15
 bar_size = 34
 right_sep = " "
 left_sep = " "
@@ -11,11 +11,12 @@ inner_right_sep = "" # " "
 inner_left_sep = "" # " "
 
 # Based on catppuccin mocha flavour
-class catppuccin():
-    background = "#0F111A" #"#1E1E2E"
+class melange():
+    background ="#282828"#"#1E1E2E"
+    group_bg = "#1f1f1f"
     foreground = "#CAD3F5"
 
-    windowfocus = "#8AADF4"
+    windowfocus = "#504945"
 
     group_current = "#ED8796"
     group_highlight = "#F5BDE6"
@@ -149,7 +150,7 @@ class nordDark():
     accent_5 = "#b48ead"
     accent_6 = "#8fbcbb"
 
-current_theme = darkPastel()
+current_theme = melange()
 
 # Switch theme based on the day
 # However qtile needs to be reloaded

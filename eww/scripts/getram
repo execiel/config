@@ -1,2 +1,18 @@
 #!/bin/sh
-printf "%.0f\n" $(free -m | grep Mem | awk '{print ($3/$2)*100}')
+mem_text=$(free -h | grep Mem | awk '{print $3 "/" $2}')
+mem_av=$(free | grep Mem | awk '{print $3}')
+
+class() {
+  if [ "$mem_av" -gt "6000000" ]; then
+    echo "ram_full"
+  elif [ "$mem_av" -gt "3000000" ]; then
+    echo "ram_warn"
+  elif [ "$mem_av" -gt "0" ]; then
+    echo "ram_good"
+  else
+    echo "ram_unknown"
+  fi
+}
+
+[ "$1" = "text" ] && echo "$mem_text" && exit
+[ "$1" = "class" ] && class && exit

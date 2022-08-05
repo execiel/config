@@ -1,2 +1,18 @@
 #!/bin/sh
-pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}'  
+vol=$(amixer -D pipewire sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -1)
+
+class() {
+  if [ "$vol" -gt "60" ]; then
+    echo "墳"
+  elif [ "$vol" -gt "30" ]; then
+    echo "奔"
+  elif [ "$vol" -gt "1" ]; then
+    echo "奄"
+  else
+    echo "婢"
+  fi
+}
+
+[ "$1" = "value" ] && echo $vol && exit
+[ "$1" = "icon" ] && class && exit
+

@@ -1,0 +1,16 @@
+#!/bin/sh
+temp=$(sensors | awk 'FNR == 22 {print $2}' | cut -c 2-3)
+
+if [ "$temp" -gt "65" ]; then
+  out="temp_crit"
+elif [ "$temp" -gt "60" ]; then
+  out="temp_high"
+elif [ "$temp" -gt "50" ]; then
+  out="temp_med"
+elif [ "$temp" -gt "30" ]; then
+  out="temp_low"
+else
+  echo "temp_low" && exit
+fi
+
+echo "$out"

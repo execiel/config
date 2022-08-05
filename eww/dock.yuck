@@ -1,45 +1,38 @@
-(defwindow dock_trigger
-  :class "dock_trigger"
-  :monitor 0
-  :geometry (geometry :x "0px" :y "-18px" :height "0px" :width "100%" :anchor "bottom center")
-  :stacking "bottom"
-  :exclude true
-	:stacking "bt"
-	:exclusive "true"
-  :focusable "true"
-  (eventbox :onhover "./scripts/closeoropen.sh 'dock'" "")
-)
+(defvar eww "$HOME/Applications/eww/target/release/eww")
+(defvar rev_dock false)
+
+(defwidget dockcontainer []
+    (eventbox
+      :class "dock_trigger"
+      :onhover "${eww} update rev_dock=true"
+      :onhoverlost "${eww} update rev_dock=false"
+      (box
+        :space-evenly false
+        :halign "center"
+        (revealer
+          :reveal rev_dock
+          :class "dock_rev"
+          :duration "0.3s"
+          :transition "crossfade"
+          (box
+            :class "dock"
+            (eventbox :onclick "firefox" :class "firefox" " ")
+            (eventbox :onclick "kitty ranger ~" :class "files" " ")
+            (eventbox :onclick "kitty" :class "term" " ")
+            (eventbox :onclick "spotify-launcher" :class "spotify" " ")
+            (eventbox :onclick "firefox https://github.com/weglon" :class "gh" " ")
+            (eventbox :onclick "firefox https://mail.google.com" :class "mail" " ")
+            )))))
 
 (defwindow dock
   :monitor 0
-  :geometry (geometry :x "0%"
-    :y "-1px"
-    :width "0px"
-    :height "0px"
-    :anchor "bottom center")
+  :windowtype "dialog"
   :stacking "fg"
-  :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
-	:exclusive "false"
-  (dock_content)
-)
-
-(defwidget dock_content []
-  (box
-    :class "dock_content"
-    :orientation "h"
-    :space-evenly true
-    :halign "center"
-    :spacing 10
-    (eventbox :class "firefox" :onclick "firefox & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "spotify" :onclick "spotify-launcher & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "movie" :onclick "Popcorn-Time & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "discord" :onclick "discord & ./scripts/closeoropen.sh 'dock'" "ﭮ")
-    (eventbox :class "files" :onclick "./scripts/closeoropen.sh 'ranger_menu' & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "git" :onclick "firefox --new-window https://github.com/weglon & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "youtube" :onclick "firefox --new-window https://youtube.com & ./scripts/closeoropen.sh 'dock'" "")
-    (eventbox :class "reddit" :onclick "firefox --new-window https://reddit.com/unixporn & ./scripts/closeoropen.sh 'dock'" "")
-  )
-)
-
-
+  :geometry (geometry
+            :anchor "bottom center"
+            :x "0px"
+            :y "0px"
+            :width "100%"
+            :height "8px"
+            )
+  (dockcontainer))

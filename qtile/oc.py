@@ -5,15 +5,12 @@ import os
 import re
 import socket
 import subprocess 
-import random
 
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.command.client import CommandClient
 
 mod = "mod4"
-command = CommandClient()
 font_family = themes.font
 font_size = themes.font_size
 icon_size = themes.icon_size
@@ -28,7 +25,7 @@ group_names = ["1", "2", "3", "4", "5", "6", "7"]
 group_labels = ["I", "II", "III", "IV", "V", "VI", "VII"]
 #group_labels = ["", "", "", "", "", "", ""]
 #group_labels = ["", "", "", "", "", "ﱮ", ""]
-group_layouts = ["max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "floating"]
+group_layouts = ["max", "monadtall", "monadtall", "max", "max", "floating", "floating"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -60,13 +57,19 @@ for i in groups:
 # Layouts and layout theme
 layout_theme = {
         "margin": themes.window_margin,
-        "border_width": 3,
+        "border_width": 2,
+        "border_focus": theme.windowfocus,
+        "border_normal": theme.background
+        }
+
+layout_theme_max = {
+        "margin": 20,
+        "border_width": 2,
         "border_focus": theme.windowfocus,
         "border_normal": theme.background
         }
 
 layouts = [
-    layout.Max(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
     layout.Bsp(**layout_theme),
@@ -84,7 +87,7 @@ extension_defaults = widget_defaults.copy()
 
 placeholder = bar.Bar(
             [],
-            42,
+            48,
             opacity = 0,
         )
 
@@ -115,31 +118,6 @@ floating_types = ["notification", "toolbar", "splash", "dialog"]
 
 main = None
 
-def get_workspace_output():
-    out = "hello"
-    for name, group in command.call('groups').items():
-        com = f"scripts/qtile switch {name}"
-        if name == "scratchpad":
-            continue
-        occ = len(group["windows"]) > 0
-        foc = group['screen'] is not None
-
-        if foc:
-            _i = ""
-            _c = "focused" 
-        elif occ:
-            _i = ""
-            _c = "occupied" 
-        else:
-            _i =  ""
-            _c = "free" 
-
-        out += f'(button :onclick "{com}"	:class	"{_c}"	"{_i}") '
-
-    out += ')'
-    return out
-
-
 @hook.subscribe.startup_once
 def startup_once():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
@@ -148,13 +126,6 @@ def startup_once():
 @hook.subscribe.startup
 def start_always():
     subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
-
-    file = os.path.expanduser('~/.cache/workspaces')
-
-    with open(file, 'w') as f:
-        f.write("+1")
-
-
 
 @hook.subscribe.client_new
 def set_floating(window):
@@ -172,11 +143,8 @@ def set_floating(window):
 @hook.subscribe.changegroup
 def hook_response(*args, **kwargs):
     file = os.path.expanduser('~/.cache/workspaces')
-
     with open(file, 'a') as f:
-        print("+1", file=f)
-
-
+        print('workspace changed', file=f)
 
 floating_layout = layout.Floating(
     float_rules=[
