@@ -2,23 +2,22 @@ configuration {
   display-drun: " ";
   display-window: "Windows:";
   display-run: "Run script:";
-  drun-display-format: "-> {name}";
-  show-icons: false;
-  font: "JetBrains Mono Nerd Font 14";
+  drun-display-format: "{icon} {name}";
+  show-icons: true;
+  font: "JetBrains Mono Nerd Font 13";
   modi: "window,run,drun";
 }
 
 @theme "/dev/null"
 
 * {
-  bg: #282828;
-  bg-alt: #32302f;
+  bg: #0F111Aee;
+  bg-alt: #1f223399;
 
-  fg: #e78a4e;
-  fg-alt: #d4be98;
+  fg-alt: #8186A1;
+  fg: #bfcfd6;
 
-  background-color: @bg;
-  
+  background-color: #ffffff00;
   border: 0;
   margin: 0;
   padding: 5;
@@ -26,20 +25,18 @@ configuration {
 }
 
 window {
-  width: 45%;
-  background-color: @bg-alt;
-  padding: 3;
+  width: 25%;
+  background-color: @bg;
 }
 
 element {
   padding: 8 0;
-  border-radius: 10px;
+  border-radius: 100px;
   text-color: @fg-alt;
 }
 
 element selected {
   text-color: @fg;
-  background-color: @bg-alt;
 }
 
 element-text {
@@ -53,33 +50,30 @@ element-icon {
 }
 
 entry {
-  background-color: @bg-alt;
   padding: 12;
   text-color: @fg;
 }
 
 inputbar {
-  border-radius: 50;
+  border-radius: 100;
   margin: 8;
+  background-color: @bg-alt;
   children: [prompt, entry];
 }
 
 listview {
   text-align: center;
-  background-color: @bg;
   margin: 8;
   columns: 1;
   lines: 8;
 }
 
 mainbox {
-  background-color: @bg;
   border-radius: 10;
   children: [inputbar, listview];
 }
 
 prompt {
-  background-color: @bg-alt;
   enabled: true;
   padding: 12 0 0 12;
   text-color: @fg;

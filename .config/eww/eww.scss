@@ -1,0 +1,396 @@
+/////////////////
+//  Variables  //
+/////////////////
+
+// Colors
+$background: #232136;
+//rgba(15, 17, 26, 0.8);
+$drgray: #3b385c;
+$brgray: #706bb0;
+$text: #e0def4;
+$brred: #ea9a97;
+$drred: #dc6068;
+$brblue: #9ccfd8;
+$drblue: #48728b;
+$bryellow: #ffcb6b;
+$dryellow: #f78c6c;
+$brgreen: #a3be8c;
+$brcyan: #89ddff;
+$brmagenta: #c4a7e7;
+
+// Sizes
+$iconsize: 18px;
+$bigiconsize: 20px;
+$fontsize: 15px;
+$bordersize: 2px;
+
+////////////////
+//  Left bar  //
+////////////////
+
+* {
+  all: unset;
+  font-size: $fontsize;
+  font-family: Hack Nerd Font;
+  font-weight: 500;
+}
+
+.leftbar {
+  opacity: 0.9;
+  color: $text;
+}
+
+.barcontainer {
+  background-color: $background;
+}
+
+.icon {
+  font-size: $iconsize;
+  font-family: JetBrains Mono Nerd Font;
+}
+
+.leftside {
+  margin-left: 10px;
+}
+
+.tray {
+  margin-right: 10px;
+}
+
+//  Menu
+
+.menu * {
+  font-family: JetBrains Mono Nerd Font;
+}
+
+.menu {
+  transition: 0.3s all;
+}
+
+.menu > box {
+  padding-left: 8px;
+}
+
+.menu:hover {
+  border-bottom: $bordersize solid $brgreen;
+}
+
+.menu:hover > box {
+  padding-right: 8px;
+}
+
+.menu button,
+.menu label {
+  font-size: $bigiconsize;
+  transition: 0.1s;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.menu:hover button {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.menu .shutdown {
+  color: $brred;
+}
+
+.menu .reboot {
+  color: $bryellow;
+}
+
+.menu .logout {
+  color: $brgreen;
+}
+
+.menu button:hover {
+  color: $text;
+}
+
+//  Workspaces
+.workspaces {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.workspaces button:hover {
+  color: $text;
+}
+
+.workspaces * {
+  font-size: $iconsize;
+  font-family: JetBrains Mono Nerd Font;
+}
+
+.workspaces button {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  padding-top: 1px;
+  padding-bottom: 2px;
+
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: 5px;
+
+  transition: 0.1s;
+}
+
+.workspaces .unoccupied {
+  color: $brgray;
+}
+
+.workspaces .focused {
+  color: $background;
+  background-color: $brmagenta;
+}
+
+.workspaces .occupied {
+  color: $background;
+  background-color: $brgray;
+}
+
+.workspace-sep {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: $brblue;
+}
+
+//  stats and other colorchanging icons
+
+
+
+.stats > box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.stats > box {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.stats label {
+  padding: 0px;
+  margin: 0px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.cpu_box,
+.ram_box,
+.temp_box,
+.disk_box {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  color: $background;
+}
+
+.cpu_box {
+  background-color: $brgreen;
+}
+
+.temp_box {
+  background-color: $brblue;
+}
+
+.ram_box {
+  background-color: $brmagenta;
+}
+
+.disk_box {
+  background-color: $brred;
+}
+
+.cpu_icon,
+.disk_icon,
+.temp_icon,
+.ram_icon {
+  font-family: JetBrains Mono Nerd Font;
+}
+
+.cpu_icon {
+  font-size: 16px;
+}
+
+.disk_icon,
+.temp_icon {
+  font-size: $iconsize;
+}
+
+.ram_icon {
+  font-size: $bigiconsize;
+}
+
+//Wifi
+.wifi * {
+  transition: 0.3s all;
+}
+
+.wifi box {
+  margin-right: 5px;
+}
+
+.wifi > box > * {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.wifi revealer > label {
+  margin-left: 10px;
+}
+
+.wifi:hover {
+  border-bottom: $bordersize solid $brgreen;
+}
+
+.wifi:hover box {
+  padding-right: 12px;
+  padding-left: 10px;
+}
+
+//  Slider stuff
+
+.volume_icon {
+  font-family: JetBrains Mono Nerd Font;
+  font-size: $bigiconsize;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider {
+  transition: 0.3s all;
+}
+
+.rev_slider box {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider .icon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.rev_slider:hover {
+  border-bottom: $bordersize solid $brmagenta;
+}
+
+.rev_slider scale trough highlight {
+  all: unset;
+  background-color: $brmagenta;
+  border-radius: 10px;
+}
+
+.rev_slider scale trough {
+  all: unset;
+  background-color: $drgray;
+  border-radius: 15px;
+  min-height: 8px;
+  min-width: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.clock {
+  margin-right: 15px;
+  margin-left: 5px;
+  color: $text;
+}
+
+//  Music player
+
+.music {
+  transition: 0.3s all;
+  color: $brmagenta;
+}
+
+.music > box {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 10px;
+}
+
+.music .icon {
+  font-size: $bigiconsize;
+}
+
+.music:hover > box {
+  border-bottom: $bordersize solid $brmagenta;
+}
+
+.music .player {
+  transition: 0.3s all;
+  margin: 0px 10px 0px 10px;
+}
+
+.music .player * {
+  font-size: $bigiconsize;
+}
+
+.music .player:hover {
+  color: $text;
+}
+
+// Window stuff
+
+.window {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+////////////
+//  dock  //
+////////////
+
+.dock {
+  margin-bottom: 8px;
+  padding: 10px;
+  transition: 0.3s all;
+}
+
+.dock_trigger:hover .dock {
+  background-color: $background;
+}
+
+.dock * {
+  font-size: 35px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.dock *:hover {
+  color: $text;
+}
+
+.dock .firefox {
+  color: $brred;
+}
+
+.dock .files {
+  color: $brcyan;
+}
+
+.dock .spotify {
+  color: $brgreen;
+}
+
+.dock .term {
+  color: $brmagenta;
+}
+
+.dock .gh {
+  color: $bryellow;
+}
+
+.dock .mail {
+  color: $drred;
+}

@@ -1,5 +1,5 @@
 #!/bin/sh
-temp=$(sensors | awk 'FNR == 22 {print $2}' | cut -c 2-3)
+temp=$(sensors | grep 'temp1' | head -1 | awk '{print $2}' | cut -c 2-3)
 
 icon() {
   if [ "$temp" -gt "60" ]; then

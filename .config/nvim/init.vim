@@ -17,7 +17,6 @@
 
 
 " Editor options
-
 set path+=**
 set modelines=0
 set autoread
@@ -27,7 +26,7 @@ set visualbell
 set backspace=indent,eol,start
 set nobackup
 set noswapfile
-" set mouse=a
+set mouse=a
 set number
 set relativenumber
 set scrolloff=2
@@ -49,6 +48,7 @@ set foldlevelstart=1
 set termguicolors
 set noshowmode
 set conceallevel=1
+set guifont=CaskaydiaCove\ NF:h13
 
 
 " Keymapping options
@@ -63,6 +63,7 @@ nnoremap <A-h> :vertical resize -5<CR>
 nnoremap <A-l> :vertical resize +5<CR> 
 nnoremap <A-j> :resize +5<CR> 
 nnoremap <A-k> :resize -5<CR> 
+nnoremap <A-f> :Telescope find_files<CR> i 
 
 "Other editor stuff
 nnoremap <C-s> :w<CR> :call CocAction('runCommand', 'prettier.formatFile')<CR>
@@ -84,7 +85,7 @@ nnoremap <C-t> :split<CR> <C-w>j :res -13<CR> :terminal<CR> i
 nnoremap t <C-w>j i
 tnoremap <Esc> <C-\><C-n><C-w>k
 
-"Bracket and qoute pairing
+" Bracket and qoute pairing
 inoremap " ""<left>
 inoremap ` ``<left>
 inoremap ' ''<left>
@@ -98,13 +99,15 @@ inoremap {;<CR> {<CR>};<ESC>O
 call plug#begin('~/.local/share/nvim/plugged')
 
   " Essentials
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'  
   Plug 'honza/vim-snippets'
   Plug 'SirVer/ultisnips'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
+  
   " Syntax
   Plug 'gko/vim-coloresque'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -115,17 +118,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Themes
   Plug 'rktjmp/lush.nvim'
   Plug 'eddyekofo94/gruvbox-flat.nvim'
-  Plug 'meliora-theme/neovim', {'requires': 'rktjmp/lush.nvim'}
   Plug 'marko-cerovac/material.nvim'
-  Plug 'junegunn/seoul256.vim'
-  Plug 'savq/melange'
-  Plug 'joshdick/onedark.vim'
   Plug 'AlessandroYorba/Alduin'
-  Plug 'romainl/Apprentice'
   Plug 'ahmedabdulrahman/aylin.vim'
-  Plug 'sainnhe/everforest'
-  Plug 'sainnhe/sonokai'
   Plug 'EdenEast/nightfox.nvim'
+  Plug 'RRethy/nvim-base16'
 
   " icons
   Plug 'ryanoasis/vim-devicons'
@@ -139,6 +136,7 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 
 " Syntax options
 au BufReadPost *.conf set syntax=dosini
+
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
@@ -156,7 +154,7 @@ lua <<EOF
   require('lualine').setup {
     options = {
       icons_enabled = true,
-      theme = 'gruvbox-material',
+      theme = 'material',
       component_separators = { left = '|', right = '|'},
       section_separators = { left = ' ', right = ' '},
       disabled_filetypes = {
@@ -193,42 +191,10 @@ lua <<EOF
     inactive_winbar = {},
     extensions = {}
   }
-
-  require 'meliora'.setup({
-      dim_inactive = false,
-      neutral = false, -- set this to `true` for neutral background and greys.
-      styles = {
-          comments = 'italic',
-          conditionals = 'NONE',
-          folds = 'NONE',
-          loops = 'NONE',
-          functions = 'NONE',
-          keywords = 'NONE',
-          strings = 'NONE',
-          variables = 'NONE',
-          numbers = 'NONE',
-          booleans = 'NONE',
-          properties = 'NONE',
-          types = 'NONE',
-          operators = 'NONE',
-      },
-      plugins = {
-          cmp = true,
-          indent_blankline = true,
-          nvim_tree = {
-              enabled = true,
-              show_root = false,
-          },
-          telescope = {
-              enabled = true,
-              nvchad_like = true,
-          },
-      }
-  })
 EOF
 
-let g:gruvbox_flat_style = "dark"
-colorscheme gruvbox-flat
+let g:material_style = "palenight"
+colorscheme duskfox
 
 hi LineNr guibg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE

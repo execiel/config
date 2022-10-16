@@ -1,0 +1,13 @@
+#!/bin/sh
+str=$(xdotool getwindowfocus getwindowname)
+
+if [[ "$str" == *"Firefox"* ]]; then
+  echo "Mozzila Firefox"
+elif [[ "$str" == *"v "* ]]; then
+  tmp=${str#*v }
+  echo "Vim - $tmp"
+elif [[ "$str" == *"~"* ]]; then
+  echo "Kitty - $str" && exit
+else
+  echo "$str" && exit
+fi

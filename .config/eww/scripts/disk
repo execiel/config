@@ -1,6 +1,6 @@
 #!/bin/sh
-disk_str=$(df -h | grep 'luksdev' | awk '{print $3 "/" $2}')
-disk_per=$(df -h | grep 'luksdev' | awk '{print $5 + .0}')
+disk_str=$(df -h | grep 'cryptlvm' | awk '{print $3 "/" $2}')
+disk_per=$(df -h | grep 'cryptlvm' | awk '{print $5 + .0}')
 
 class() {
   if [ "$disk_per" -gt "90" ]; then

@@ -1,0 +1,15 @@
+#!/bin/sh
+len=$(wmctrl -l | wc -l)
+
+out="(box :class 'window_toggle' "
+
+for i in `seq 1 $len`
+do
+  desktop=$(wmctrl -l -x | awk "NR==$i" | awk '{print $2}')
+  name=$(wmctrl -l -x | awk "NR==$i" | awk '{print $3}' | cut -d '.' -f 2)
+  out+="(button :class 'window_button' :onclick 'wmctrl -s $desktop' (label :text '$name'))"
+done
+
+out+=")"
+
+echo $out

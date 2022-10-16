@@ -1,0 +1,16 @@
+(defwidget container[]
+  (box
+    :class "sidebar"))
+
+(defwindow sidebar 
+  :monitor 0
+  :windowtype "dock"
+  :stacking "fg"
+  :geometry (geometry :x "0px"
+                      :y "28px"
+                      :width "30px"
+                      :height "1052px"
+                      :anchor "right top")
+  :reserve (struts :side "top" :distance "0px")
+  (container))
+

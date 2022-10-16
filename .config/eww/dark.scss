@@ -3,24 +3,26 @@
 /////////////////
 
 // Colors
-$background: #282828;
-$bgdark: #32302f;
-$drgray: #504945;
-$brgray: #928374;
-$text: #d4be98;
-$brred: #e78a4e;
-$drred: #c14a4a;
-$brblue: #7daea3;
-$bryellow: #d8a657;
-$dryellow: #a96b2c;
-$brgreen: #a9b665;
-$brcyan: #89b482;
-$brmagenta: #d3869b;
+$background: #0f111a;
+$bgdark: #161926;
+$drgray: #1f2233;
+$brgray: #505a7a;
+$text: #fafafa;
+$brred: #f07178;
+$drred: #dc6068;
+$brblue: #b0c9ff;
+$drblue: #82aaff;
+$bryellow: #ffcb6b;
+$dryellow: #f78c6c;
+$brgreen: #c3e88d;
+$brcyan: #89ddff;
+$brmagenta: #ff9cac;
 
 // Sizes
 $iconsize: 20px;
-$fontsize: 16px;
-$bordersize: 3px;
+$bigiconsize: 23px;
+$fontsize: 15px;
+$bordersize: 2px;
 
 ///////////
 //  bar  //
@@ -33,26 +35,25 @@ $bordersize: 3px;
   font-weight: 500;
 }
 
-.bar label {
-  text-shadow: 2px 2px 2px #1f1f1f;
-}
-
 .bar {
-  background-color: $background;
+  opacity: 0.85;
   color: $text;
-  opacity: 1;
-
   padding: 10px;
-  border-bottom: $bordersize solid $drgray;
-}
-
-.bar > * {
-  margin-top: -3px;
+  background-color: $background;
 }
 
 .icon {
   font-size: $iconsize;
 }
+
+.leftside {
+  margin-left: 10px;
+}
+
+.tray {
+  margin-right: 10px;
+}
+
 
 //  menu
 
@@ -65,7 +66,6 @@ $bordersize: 3px;
 }
 
 .menu:hover {
-  background-color: $bgdark;
   border-bottom: $bordersize solid $brgreen;
 }
 
@@ -73,12 +73,17 @@ $bordersize: 3px;
   padding-right: 8px;
 }
 
-.menu label,
-.menu button {
-  font-size: 23px;
+.menu button,
+.menu label {
+  font-size: $bigiconsize;
+  transition: 0.1s;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.menu:hover button {
   margin-left: 8px;
   margin-right: 8px;
-  transition: 0.1s;
 }
 
 .menu .shutdown {
@@ -98,25 +103,29 @@ $bordersize: 3px;
 }
 
 //  Workspaces
-
-.workspace_window {
-  background-color: transparent;
-  color: transparent;
+.workspaces {
+  margin-top: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .workspaces button:hover {
   color: $text;
+  border-bottom: solid 2px $text;
 }
 
 .workspaces * {
-  font-size: 19px;
-  margin-top: 3px;
-  margin-right: 5px;
-  margin-left: 5px;
+  font-size: $iconsize;
 }
 
 .workspaces button {
   transition: 0.1s;
+
+  padding-left: 6px;
+  padding-right: 11px;
+  padding-bottom: 4px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .workspaces .free {
@@ -124,11 +133,11 @@ $bordersize: 3px;
 }
 
 .workspaces .focused {
-  color: $brred;
+  color: $brblue;
 }
 
 .workspaces .occupied {
-  color: $brred;
+  color: $brgray;
 }
 
 //  stats and other colorchanging icons
@@ -140,10 +149,10 @@ $bordersize: 3px;
 .stats > box {
   padding-left: 10px;
   padding-right: 10px;
+  margin-right: 10px;
 }
 
-.stats:hover {
-  background-color: $bgdark;
+.stats:hover > box {
   border-bottom: $bordersize solid $brcyan;
 }
 
@@ -152,7 +161,7 @@ $bordersize: 3px;
 }
 
 .ram_icon {
-  font-size: 22;
+  font-size: $bigiconsize;
 }
 
 .disk_empty,
@@ -170,7 +179,7 @@ $bordersize: 3px;
 .ram_full,
 .ram_warn,
 .ram_good {
-  font-size: 24px;
+  font-size: $bigiconsize;
 }
 
 .temp_low {
@@ -179,7 +188,7 @@ $bordersize: 3px;
 
 .ram_good,
 .disk_good {
-  color: $brgreen;
+  color: $brblue;
 }
 
 .battery_charging,
@@ -214,12 +223,11 @@ $bordersize: 3px;
 .disk_warn,
 .ram_warn,
 .temp_med {
-  color: $bryellow;
+  color: $dryellow;
 }
 
-.battery_charging,
 .disk_empty {
-  color: $brgreen;
+  color: $brblue;
 }
 
 //Wifi
@@ -242,7 +250,6 @@ $bordersize: 3px;
 }
 
 .wifi:hover {
-  background-color: $bgdark;
   border-bottom: $bordersize solid $brgreen;
 }
 
@@ -254,7 +261,7 @@ $bordersize: 3px;
 //  Slider stuff
 
 .volume_icon {
-  font-size: 22px;
+  font-size: $bigiconsize;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -275,19 +282,18 @@ $bordersize: 3px;
 
 .rev_slider:hover {
   background-color: $bgdark;
-  border-bottom: $bordersize solid $brred;
+  border-bottom: $bordersize solid $brmagenta;
 }
 
 .rev_slider scale trough highlight {
   all: unset;
-  background-color: $brred;
+  background-color: $brmagenta;
   border-radius: 10px;
 }
 
 .rev_slider scale trough {
   all: unset;
   background-color: $drgray;
-  border-radius: 50px;
   min-height: 8px;
   min-width: 50px;
   margin-left: 5px;
@@ -295,7 +301,8 @@ $bordersize: 3px;
 }
 
 .clock {
-  margin-right: 10px;
+  margin-right: 15px;
+  margin-left: 5px;
   color: $text;
 }
 
@@ -303,17 +310,21 @@ $bordersize: 3px;
 
 .music {
   transition: 0.3s all;
-  color: $bryellow;
+  color: $brmagenta;
+}
+
+.music > box {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 10px;
 }
 
 .music .icon {
-  padding-left: 15px;
-  font-size: 22px;
+  font-size: $bigiconsize;
 }
 
-.music:hover {
-  background-color: $bgdark;
-  border-bottom: 3px solid $bryellow;
+.music:hover > box {
+  border-bottom: $bordersize solid $brmagenta;
 }
 
 .music .player {
@@ -322,11 +333,44 @@ $bordersize: 3px;
 }
 
 .music .player * {
-  font-size: 25px;
+  font-size: $bigiconsize;
 }
 
 .music .player:hover {
   color: $text;
+}
+
+// Window stuff
+
+.window > box {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.window:hover > box {
+  border-bottom: $bordersize solid $brcyan;
+}
+
+.window_toggle {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.window_button {
+  color: $brcyan;
+
+  transition: 0.3s;
+
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.window_button:hover {
+  opacity: 0.5;
 }
 
 ////////////
@@ -336,7 +380,6 @@ $bordersize: 3px;
 .dock {
   margin-bottom: 8px;
   padding: 10px;
-  border-radius: 15px;
   transition: 0.3s all;
 }
 

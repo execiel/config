@@ -1,0 +1,13 @@
+#!/bin/sh
+device=$(iwctl device list | grep 'wlan' | awk '{print $1}')
+name=$(iwctl station $device get-networks | grep '>' | awk '{print $2}')
+up=$(iwctl station $device show | grep 'TxBitrate' | awk '{print $2 / 10000}')
+down=$(iwctl station $device show | grep 'RxBitrate' | awk '{print $2 / 10000}')
+
+if [ -z "$name" ]; then
+  [ "$1" = "text" ] && echo "not connected" && exit
+  [ "$1" = "icon" ] && echo "睊" && exit
+fi
+
+[ "$1" = "text" ] && echo " $down  $up Mbit/s" && exit
+[ "$1" = "icon" ] && echo "直" && exit

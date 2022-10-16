@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# get workspace widget for eww
+workspaces() {
+  ws1=1
+  ws2=2
+  ws3=3
+  ws4=4
+  ws5=5
+  ws6=6
+
+  works1="unoccupied"
+  works2="unoccupied"
+  works3="unoccupied"
+  works4="unoccupied"
+  works5="unoccupied"
+  works6="unoccupied"
+
+  # This is the list of occupied windows. 
+  list=$(bspc query -D -d .occupied --names)
+
+  [[ "$list" == *"1"* ]] && works1="occupied"
+  [[ "$list" == *"2"* ]] && works2="occupied"
+  [[ "$list" == *"3"* ]] && works3="occupied"
+  [[ "$list" == *"4"* ]] && works4="occupied"
+  [[ "$list" == *"5"* ]] && works5="occupied"
+  [[ "$list" == *"6"* ]] && works6="occupied"
+
+  # this is the list of focused windows
+  focused=$(bspc query -D -d --names)
+
+  # there can be only one focused window so no need of glob matching
+  [ "$focused" = 1 ] && works1="focused"
+  [ "$focused" = 2 ] && works2="focused"
+  [ "$focused" = 3 ] && works3="focused"
+  [ "$focused" = 4 ] && works4="focused"
+  [ "$focused" = 5 ] && works5="focused"
+  [ "$focused" = 6 ] && works6="focused"
+
+  echo "(box	:class \"workspaces\" \
+          :orientation \"h\" \
+          :halign \"center\" \
+          :space-evenly \"false\" \
+          :spacing \"12\" \
+      (button :onclick \"bspc desktop -f 1\" \
+          :class \"$works1\"\"I\") \
+      (button :onclick \"bspc desktop -f 2\" \
+          :class \"$works2\"\"II\") \
+      (button :onclick \"bspcs desktop -f 3\" \
+          :class \"$works3\"\"III\") \
+      (label :text \"\" :class \"workspace-sep\" )
+      (button :onclick \"bspc desktop -f 4\" \
+          :class \"$works4\"\"IV\") \
+      (button :onclick \"bspc desktop -f 5\" \
+          :class \"$works5\"\"V\") \
+      (button :onclick \"bspc desktop -f 6\" \
+      :class \"$works6\"\"VI\"))"
+}
+
+workspaces

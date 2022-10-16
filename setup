@@ -1,0 +1,8 @@
+#!/bin/sh
+# Setup script (untested)
+
+# Install programs
+sudo pacman -S rofi fish neovim python python-pynvim npm kitty ranger 
+
+# Copy configurations
+cp -a /.config/. ~/.config

@@ -4,6 +4,18 @@ c = CommandClient()
 
 groups = {}
 
+icons = {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        }
+
 for name, group in c.call('groups').items():
     if name == "scratchpad":
         continue
@@ -14,18 +26,17 @@ for name, group in c.call('groups').items():
 output = '(box	:class "workspaces"	:orientation "h" :spacing 5 :space-evenly "false" '
 for name, prop in groups.items():
     command = f"scripts/qtile switch {name}"
-    class_ = "0"
+    class_ = "free"
     focused, occupied = prop['focused'], prop['occupied']
 
     if focused:
-        icon = ""
         class_ = "focused"
     elif occupied:
-        icon = ""
         class_ = "occupied"
     else:
-        icon = ""
         class_ = "free"
+
+    icon = icons[name]
 
     output += f'(button :onclick "{command}"	:class	"{class_}"	"{icon}") '
 
