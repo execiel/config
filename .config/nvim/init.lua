@@ -89,6 +89,7 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-h>', '<C-w>h')
 
+
 -- Resizing
 map('n', '<A-j>', '<CMD>resize -5<CR>')
 map('n', '<A-k>', '<CMD>resize +5<CR>')
@@ -163,6 +164,7 @@ vim.call('plug#end')
 ------------------
 
 vim.cmd("colorscheme base16-onedark")
+vim.cmd("hi Normal guibg=none ctermbg=none")
 
 -- Highlight copied section
 A.nvim_create_autocmd('TextYankPost', {

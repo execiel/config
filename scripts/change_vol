@@ -1,0 +1,46 @@
+#!/bin/sh
+icon_path="~/.icons/Papirus-Dark/16x16/panel"
+
+icon_low="$icon_path/audio-volume-low.svg"
+icon_medium="$icon_path/audio-volume-medium.svg"
+icon_high="$icon_path/audio-volume-high.svg"
+icon_muted="$icon_path/audio-volume-muted.svg"
+
+send_dunst() {
+  vol=$(amixer sget Master | sed -n '6{p;q}' | awk -F"[][{}]" '{print $2}' | sed 's/%//')
+  if [ "$vol" -gt "60" ]; then
+    i=$icon_high
+  elif [ "$vol" -gt "20" ]; then
+    i=$icon_medium
+  else
+    i=$icon_low
+  fi
+
+  dunstify "$vol%" -i $i --replace=42069
+}
+
+up() {
+  amixer sset Master 5%+
+  send_dunst
+}
+
+down() {
+  amixer sset Master 5%-
+  send_dunst
+}
+
+mute() {
+  amixer sset Master togglemute
+
+  status=$(amixer sget Master | sed -n '6{p;q}' | awk -F"[][{}]" '{print $4}')
+
+  if [ "$status" = "off" ]; then
+    dunstify "Volume off" -i "$icon_muted" --replace=42069
+  else
+    send_dunst
+  fi
+}
+
+[ "$1" = "up" ] && up && exit
+[ "$1" = "down" ] && down && exit
+[ "$1" = "mute" ] && mute && exit
